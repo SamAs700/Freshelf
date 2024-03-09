@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "product_list")
 public class Product implements Parcelable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int uid;
 
     @ColumnInfo(name = "product_name")
