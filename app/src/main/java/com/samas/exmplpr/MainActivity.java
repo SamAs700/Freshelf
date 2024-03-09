@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 String productName = productEditText.getText().toString();
                 String expiryDate = expiryDateEditText.getText().toString();
                 Product product = new Product(productName, expiryDate);
-                productList.add(product); 
+                database.productDao().insertAll(product);
+                productList.add(product);
                 productEditText.setText("");
                 expiryDateEditText.setText("");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        database =  getDatabase(this);
+        database = getDatabase(this);
     }
 
     private void createNotificationChannel() {
