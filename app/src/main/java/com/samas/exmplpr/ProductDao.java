@@ -1,5 +1,6 @@
 package com.samas.exmplpr;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,7 +13,7 @@ public interface ProductDao {
     @PrimaryKey(autoGenerate = true)
 
     @Query("SELECT * FROM product_list")
-    List<Product> getAll();
+    LiveData<List<Product>> getAll();
 
     @Insert
     void insertAll(Product product);
