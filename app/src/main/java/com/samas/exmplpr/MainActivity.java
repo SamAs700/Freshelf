@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 productEditText.setText("");
                 expiryDateEditText.setText("");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    sendNotification(product);
+                    //sendNotification(product);
                     setProductAlarm(product);
                 }
             }
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent alarmIntent = new Intent(this, ProductAlarmReceiver.class);
                         alarmIntent.putExtra("productName", product.getName());
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
 
                         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
