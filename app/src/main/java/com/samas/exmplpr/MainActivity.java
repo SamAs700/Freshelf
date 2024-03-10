@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setProductAlarm(Product product) {
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
                 try {
                         Date expiryDate = format.parse(product.getExpirationDate());
                         long triggerTime = expiryDate.getTime();
