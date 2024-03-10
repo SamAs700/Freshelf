@@ -25,12 +25,9 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list1);
-
-        // Initialize the database and DAO
         database = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "database").allowMainThreadQueries().build();
         productDao = database.productDao();
-
         listView = findViewById(R.id.listView);
         List<Product> productList;
         productList = productDao.getAll();
