@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 productEditText.setText("");
                 expiryDateEditText.setText("");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    //sendNotification(product);
                     setProductAlarm(product);
                 }
             }
@@ -79,21 +77,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListActivity.class);
         intent.putParcelableArrayListExtra("productList", (ArrayList<Product>) productList);
         startActivity(intent);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void sendNotification(Product product) {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Notification.Builder notificationBuilder = new Notification.Builder(this, "canal")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Product Expired")
-                .setContentText(product.getName() + " has expired.")
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setCategory(Notification.CATEGORY_MESSAGE);
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-        notificationBuilder.setContentIntent(pendingIntent);
-        notificationManager.notify(1, notificationBuilder.build());
     }
 
     private void setProductAlarm(Product product) {
@@ -139,5 +122,3 @@ public class MainActivity extends AppCompatActivity {
                     }
         }
 }
-
-
