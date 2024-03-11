@@ -86,8 +86,9 @@ public class MainActivity extends AppCompatActivity {
                         long triggerTime = expiryDate.getTime();
 
                         Intent alarmIntent = new Intent(this, ProductAlarmReceiver.class);
+                        final int id = (int) System.currentTimeMillis();
                         alarmIntent.putExtra("productName", product.getName());
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
 
                         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
