@@ -30,11 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText productEditText;
     private EditText expiryDateEditText;
     private Button saveButton;
-    private Button sendNotificationButton;
-
     private List<Product> productList = new ArrayList<>();
-
     private AppDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
