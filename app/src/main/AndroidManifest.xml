@@ -24,6 +24,10 @@
             android:label="@string/title_activity_list"
             android:theme="@style/Theme.Exmplpr" />
         <activity
+            android:name=".FirstOpen"
+            android:exported="false"
+            android:theme="@style/Theme.Exmplpr" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

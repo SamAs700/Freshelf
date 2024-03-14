@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkFirstStart();
         createNotificationChannel();
         productEditText = findViewById(R.id.productEditText);
         expiryDateEditText = findViewById(R.id.expiryDateEditText);
@@ -58,7 +60,22 @@ public class MainActivity extends AppCompatActivity {
         });
         database = getDatabase(this);
     }
+    private void checkFirstStart() {
+        SharedPreferences sp = getSharedPreferences("hasVisited",
+                Context.MODE_PRIVATE);
+        boolean hasVisited = sp.getBoolean("hasVisited", false);
 
+        if (!hasVisited) {
+            SharedPreferences.Editor e = sp.edit();
+            e.putBoolean("hasVisited", true);
+            e.commit();
+            Intent intent = new Intent(this, FirstOpen.class);
+            startActivity(intent);
+        }
+        else {
+
+        }
+    }
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
