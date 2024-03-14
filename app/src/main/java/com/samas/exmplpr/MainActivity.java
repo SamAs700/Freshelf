@@ -116,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     }
             }
 
-            public static class ProductAlarmReceiver extends BroadcastReceiver {
-
+        public static class ProductAlarmReceiver extends BroadcastReceiver {
                 @Override
         public void onReceive(Context context, Intent intent) {
                         String productName = intent.getStringExtra("productName");
@@ -137,4 +136,5 @@ public class MainActivity extends AppCompatActivity {
                        notificationManager.notify(1, notificationBuilder.build());
                     }
         }
+
 }
