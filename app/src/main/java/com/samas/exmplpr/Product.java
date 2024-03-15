@@ -20,7 +20,6 @@ public class Product implements Parcelable {
     @ColumnInfo(name = "expiration_date")
     public String expirationDate;
 
-
     public Product(String name, String expirationDate) {
         this.name = name;
         this.expirationDate = expirationDate;

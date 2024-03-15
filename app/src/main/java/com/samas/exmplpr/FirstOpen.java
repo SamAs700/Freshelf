@@ -1,7 +1,6 @@
 package com.samas.exmplpr;
 
 import static android.Manifest.permission.POST_NOTIFICATIONS;
-import static com.samas.exmplpr.AppDatabase.getDatabase;
 
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -18,6 +17,7 @@ public class FirstOpen extends AppCompatActivity {
     private EditText usernameEditText;
     private Button startButton;
     private AppDatabase database;
+    private UserDatabase userDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,11 @@ public class FirstOpen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String userName = usernameEditText.getText().toString();
+                User user = new User(userName);
+                userDatabase.userDao().insert(user);
                 finish();
             }
         });
-        database = getDatabase(this);
+        userDatabase = UserDatabase.getDatabase(this);
     }
 }

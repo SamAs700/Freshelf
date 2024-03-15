@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,9 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText productEditText;
     private EditText expiryDateEditText;
+    private TextView userView;
     private Button saveButton;
     private List<Product> productList = new ArrayList<>();
     private AppDatabase database;
+    private UserDatabase userDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         checkFirstStart();
         createNotificationChannel();
+        userDatabase = UserDatabase.getDatabase(this);
         productEditText = findViewById(R.id.productEditText);
         expiryDateEditText = findViewById(R.id.expiryDateEditText);
         saveButton = findViewById(R.id.saveButton);
+        userView = findViewById(R.id.userView);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
