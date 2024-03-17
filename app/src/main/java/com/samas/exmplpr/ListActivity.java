@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class ListActivity extends AppCompatActivity {
     private ListView listView;
     private AppDatabase database;
     private ProductDao productDao;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ListActivity extends AppCompatActivity {
                 AppDatabase.class, "database").allowMainThreadQueries().build();
         productDao = database.productDao();
         listView = findViewById(R.id.listView);
+        backButton = findViewById(R.id.backButton);
         List<Product> productList;
         productList = productDao.getAll();
         ArrayAdapter<Product> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productList);
@@ -57,6 +60,12 @@ public class ListActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

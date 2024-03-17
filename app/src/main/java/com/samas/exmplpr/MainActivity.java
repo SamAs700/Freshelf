@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         userView = findViewById(R.id.userView);
         SharedPreferences sp = getSharedPreferences("hasVisited",
                 Context.MODE_PRIVATE);
-        userView.setText(sp.getString("username", "-"));
+        userView.setText(sp.getString("username", "Имя"));
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
                     Notification.Builder notificationBuilder = null;
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                         notificationBuilder = new Notification.Builder(context, "canal")
-                                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                                .setContentTitle("Product Expired")
-                                .setContentText(productName + " has expired.")
+                                .setSmallIcon(R.drawable.smallicon)
+                                .setContentTitle(productName)
+                                .setContentText("Срок годности истек.")
                                 .setPriority(Notification.PRIORITY_HIGH)
                                 .setCategory(Notification.CATEGORY_MESSAGE);
                     }
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1){
             SharedPreferences sp = getSharedPreferences("hasVisited",
                     Context.MODE_PRIVATE);
-            userView.setText(sp.getString("username", "-"));
+            userView.setText(sp.getString("username", "Имя"));
         }
     }
 }

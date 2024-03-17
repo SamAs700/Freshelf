@@ -12,8 +12,9 @@
 	<color name="teal_700">#FF018786</color>
 	<color name="black">#FF000000</color>
 	<color name="white">#FFFFFFFF</color>
-
+	<color name="main">#F6FFF5</color>
 	<color name="_bg__splash_screen_color">#FFFFFF</color>
+	<color name="refr">#F6FFF5</color>
 	<color name="_bg__logo_ek1_color">#000000</color>
 	<color name="freshelf_color">#0A3506</color>
 	<color name="_____________________color">#306F3A</color>

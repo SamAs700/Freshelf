@@ -4,7 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@color/refr"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/welcomeView"
+        android:layout_width="161dp"
+        android:layout_height="121dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/avatar" />
+
+    <ImageView
+        android:id="@+id/addView"
+        android:layout_width="366dp"
+        android:layout_height="57dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355"
+        app:srcCompat="@mipmap/addproduct" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/productText"
@@ -15,12 +42,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35">
+        android:textColorHint="@color/black"
+        app:layout_constraintVertical_bias="0.462">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/productEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:gravity="center"
             android:hint="Название продукта" />
 
@@ -35,50 +64,62 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.437">
+        android:textColorHint="@color/black"
+        app:layout_constraintVertical_bias="0.573">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/expiryDateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="Дата окончания срока годности (дд.мм.гггг)" />
+            android:textColor="@color/black"
+            android:hint="Дата окончания срока годности" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="51dp"
+        android:backgroundTint="@color/_____________________color"
         android:text="Сохранить"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.683" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/productListView"
-        android:layout_width="119dp"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="51dp"
+        android:backgroundTint="@color/_____________________color"
         android:onClick="openListActivity"
         android:text="Список"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
+        app:layout_constraintVertical_bias="0.683" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/userView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_width="169dp"
+        android:layout_height="61dp"
+        android:fontFamily="@font/caveat"
+        android:text="Артём"
+        android:textColor="@color/freshelf_color"
+        android:textSize="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.048" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
