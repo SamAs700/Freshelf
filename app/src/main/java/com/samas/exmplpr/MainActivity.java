@@ -16,7 +16,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
@@ -27,12 +29,13 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-
     private EditText productEditText;
     private EditText expiryDateEditText;
     private Button saveButton;
+    private TextView userView;
     private List<Product> productList = new ArrayList<>();
     private AppDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         productEditText = findViewById(R.id.productEditText);
         expiryDateEditText = findViewById(R.id.expiryDateEditText);
         saveButton = findViewById(R.id.saveButton);
+        userView = findViewById(R.id.userView);
+        SharedPreferences sp = getSharedPreferences("hasVisited",
+                Context.MODE_PRIVATE);
+        userView.setText(sp.getString("username", "-"));
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             e.putBoolean("hasVisited", true);
             e.commit();
             Intent intent = new Intent(this, FirstOpen.class);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         }
         else {
 
@@ -137,4 +144,13 @@ public class MainActivity extends AppCompatActivity {
                     }
         }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            SharedPreferences sp = getSharedPreferences("hasVisited",
+                    Context.MODE_PRIVATE);
+            userView.setText(sp.getString("username", "-"));
+        }
+    }
 }

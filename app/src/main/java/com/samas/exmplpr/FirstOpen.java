@@ -3,6 +3,8 @@ package com.samas.exmplpr;
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static com.samas.exmplpr.AppDatabase.getDatabase;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +39,10 @@ public class FirstOpen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String userName = usernameEditText.getText().toString();
+                SharedPreferences sp = getSharedPreferences("hasVisited", Context.MODE_PRIVATE);
+                SharedPreferences.Editor e = sp.edit();
+                e.putString("username", userName);
+                e.commit();
                 finish();
             }
         });
