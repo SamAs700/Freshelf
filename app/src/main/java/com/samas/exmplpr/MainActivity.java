@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String productName = productEditText.getText().toString();
                 String expiryDate = expiryDateEditText.getText().toString();
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                format.setLenient(false);
+                try {
+                    format.parse(expiryDate);
+                } catch (ParseException e) {
+                    Toast.makeText(MainActivity.this, "Введите корректную дату", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Product product = new Product(productName, expiryDate);
                 database.productDao().insertAll(product);
                 productList.add(product);
@@ -105,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
     private void setProductAlarm(Product product) {
                 SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
                 try {
+                        format.setLenient(false);
                         Date expiryDate = format.parse(product.getExpirationDate());
                         long triggerTime = expiryDate.getTime();
-
                         Intent alarmIntent = new Intent(this, ProductAlarmReceiver.class);
                         final int id = (int) System.currentTimeMillis();
                         alarmIntent.putExtra("productName", product.getName());
@@ -119,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
                             }
-                    } catch (ParseException e) {
-                        e.printStackTrace();
+                     } catch (ParseException e) {
+                        Toast.makeText(this, "ENTER CORRECT DATA", Toast.LENGTH_SHORT).show();
                     }
             }
 

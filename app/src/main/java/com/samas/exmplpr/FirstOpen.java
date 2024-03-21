@@ -4,10 +4,12 @@ import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static com.samas.exmplpr.AppDatabase.getDatabase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,6 +38,17 @@ public class FirstOpen extends AppCompatActivity {
                         1);
             }
         }
+        usernameEditText.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                        openMainActivity();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,5 +61,10 @@ public class FirstOpen extends AppCompatActivity {
             }
         });
         database = getDatabase(this);
+    }
+
+    public void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
