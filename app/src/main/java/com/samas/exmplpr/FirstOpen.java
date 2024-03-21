@@ -4,7 +4,6 @@ import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static com.samas.exmplpr.AppDatabase.getDatabase;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -42,7 +41,7 @@ public class FirstOpen extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                        openMainActivity();
+                        startButton.callOnClick();
                     return true;
                 }
                 return false;
@@ -61,10 +60,5 @@ public class FirstOpen extends AppCompatActivity {
             }
         });
         database = getDatabase(this);
-    }
-
-    public void openMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }

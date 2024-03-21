@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:gravity="center"
+            android:lines="1"
             android:maxLines="1"
             android:hint="Название продукта" />
 

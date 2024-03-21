@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
         expiryDateEditText = findViewById(R.id.expiryDateEditText);
         saveButton = findViewById(R.id.saveButton);
         userView = findViewById(R.id.userView);
+        setEnter();
         SharedPreferences sp = getSharedPreferences("hasVisited",
                 Context.MODE_PRIVATE);
         userView.setText(sp.getString("username", "Имя"));
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,5 +165,28 @@ public class MainActivity extends AppCompatActivity {
                     Context.MODE_PRIVATE);
             userView.setText(sp.getString("username", "Имя"));
         }
+    }
+    public void setEnter(){
+        productEditText.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    expiryDateEditText.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        expiryDateEditText.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    saveButton.callOnClick();
+                    productEditText.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }
