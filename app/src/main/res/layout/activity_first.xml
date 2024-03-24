@@ -49,7 +49,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Ваше имя"
-            android:maxLines="1"/>
+            android:lines="1"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionDone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
